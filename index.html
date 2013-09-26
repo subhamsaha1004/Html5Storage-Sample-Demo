@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Html5 Storage Demo</title>
+	<link href='http://fonts.googleapis.com/css?family=Kelly+Slab|Oleo+Script+Swash+Caps:400,700|Amaranth:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	<div id="page">
+		<h1>HTML5 Localstorage Demo</h1>
+		<p>Interact with the form, then open your dev tools resources tab and see localstorage to se the changes</p>
+		<p>Open this page in a new tab to see the changes persist. Clear the settings in one page to see the change reflect in all tabs</p>
+		<div class="formWrapper">
+			<div class="message"></div>
+			<section>
+				<form>
+					<div class="elementWrapper">
+						<label>Select your BG color: </label>
+			 			<input id="favcolor" type="color" value="#ffffff" class="btn" />
+					</div>
+			 		<div class="elementWrapper">
+			 			<label>Select Font Size: </label>
+			 			<input id="fontsz" type="number" max="14" min="10" value="13" />
+			 		</div>
+			 		
+			 		<div class="elementWrapper btnWrapper">
+			 			<input type="button" value="Save" id="save" class="btn" />
+			 			<input type="reset" value="Clear" id="reset" class="btn" />
+			 		</div>
+		 		</form>
+		 	</section>
+		</div>
+	</div>
+
+	<script src="app.js"></script>
+</body>
+</html>
