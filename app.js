@@ -27,6 +27,7 @@
 
 				// Setting the message to show to the user
 				message.classList.remove('error');
+				message.classList.remove('otherTab');
 				message.classList.add('success');
 				message.innerHTML = "Values successfully saved";
 
@@ -36,6 +37,7 @@
 				if(e == QUOTA_EXCEEDED_ERR){
 					message.innerHTML = "Quota exceeded";
 					message.classList.remove('success');
+					message.classList.remove('otherTab');
 					message.classList.add('error');
 					console.log(e);
 				}
@@ -47,42 +49,58 @@
 	}
 
 	function clearItems(e){
-		// Clearing the localStorage
-		localStorage.removeItem("bgcolor");
-    localStorage.removeItem("fontsize");
+		if(localStorage.length != 0){
+			// Clearing the localStorage
+			localStorage.removeItem("bgcolor");
+	    localStorage.removeItem("fontsize");
 
-    // Setting the message
-    message.classList.remove('error');
-		message.classList.add('success');
-		message.innerHTML = "Values have been cleared";
+	    // Setting the message
+	    message.classList.remove('error');
+	    message.classList.remove('otherTab');
+			message.classList.add('success');
+			message.innerHTML = "Values have been cleared";
 
-		// Resetting everything to the defaults
-    setDefaults();
+			// Resetting everything to the defaults
+	    setDefaults();
+	  }
 	}
 
-	function applySettings(){
-		console.log('Apply')
+	function applySettings(otherTab){
 		if(localStorage.length != 0){
 			doc.body.style.backgroundColor = localStorage.getItem('bgcolor');
 			doc.body.style.fontSize = localStorage.fontsize + 'px';
 			favcolor.value = localStorage.bgcolor;
 			fontsz.value = localStorage.fontsize;
-		} else {
-			setDefaults();
+			if(otherTab){
+				message.classList.remove('error');
+				message.classList.remove('success');
+				message.classList.add('otherTab');
+				message.innerHTML = "Value changed in other tab. Applied here";
+			}
 		}
 	}
 
-	function setDefaults(){
+	function setDefaults(otherTab){
 		doc.body.style.backgroundColor = "#fff";
 		doc.body.style.fontSize = '14px';
-		favcolor.value = '#fff';
+		favcolor.value = '#ffffff';
 		fontsz.value = '13';
+		if(otherTab){
+			message.classList.remove('error');
+			message.classList.remove('success');
+			message.classList.add('otherTab');
+			message.innerHTML = "Value changed in other tab. Applied here";
+		}
 	}
 
 	// Applying the changes on storage event
 	window.addEventListener('storage', handleStorage, false);
 	function handleStorage(e){
-		applySettings();
+		if(localStorage.length != 0){
+			applySettings(true);
+		}else {
+			setDefaults(true);
+		}
 		for(var prop in e){
 			console.log(prop + ': ' + e[prop]);
 		}
