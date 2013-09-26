@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# 2010-02-08:v2
+
+CACHE:
+index.html
+index-json.html
+index-appcache.html
+main.css
+app.js
+app-json.js
+images/subham.jpg
+images/sherlock.jpg
+
+# offline.html will be served in place of index.html
+FALLBACK
+/index.html /offline.html
+
+# Require the users to be online
+NETWORK
+/sample.php
